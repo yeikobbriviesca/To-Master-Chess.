@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Master Chess</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">♟ <span>To Master Chess</span></div>
+    <nav>
+      <button class="nav-btn active" data-page="inicio">Home</button>
+      <button class="nav-btn" data-page="practicar">Practice</button>
+      <button class="nav-btn" data-page="local">1v1 Local</button>
+      <button class="nav-btn" data-page="online">1v1 Online</button>
+
+    </nav>
+  </header>
+
+  <aside class="left-rail" aria-label="Account and tools">
+    <div class="rail-account"><div class="rail-avatar">♟</div><div><strong id="railProfileName">You</strong><small>Account</small></div></div>
+    <button class="rail-btn" data-rail="profile">👤 <span>Profile</span></button>
+    <button class="rail-btn" data-rail="estadisticas">📈 <span>Statistics</span></button>
+  </aside>
+
+  <main>
+    <section id="inicio" class="page active-page">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">“THE HARDEST THING IN CHESS IS TO WIN A WON GAME.” — EMANUEL LASKER</p>
+          <h1>Play. Learn. Improve.</h1>
+          <p>A chess app with local games, practice against the computer, statistics, and game analysis history.</p>
+          <div class="hero-actions">
+            <button class="primary" data-go="practicar">🤖 Practice</button>
+            <button class="secondary" data-go="local">👥 1v1 Local</button>
+          </div>
+        </div>
+        <div class="hero-board" aria-hidden="true">
+          <div class="mini-piece">♞</div>
+          <div class="mini-piece">♟</div>
+          <div class="mini-piece">♛</div>
+          <div class="mini-piece">♜</div>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card"><span>🤖</span><h3>Practice</h3><p>Play against a computer with adjustable difficulty.</p></article>
+        <article class="card"><span>👥</span><h3>1v1 Local</h3><p>Two people can play on the same device.</p></article>
+                <article class="card"><span>📊</span><h3>Statistics</h3><p>View games, wins, losses, and draws.</p></article>
+      </div>
+      <div class="creator-credit">Made by <strong>Yeikob.B</strong></div>
+    </section>
+
+    <section id="practicar" class="page">
+      <div class="section-head">
+        <div><p class="eyebrow">TRAINING MODE</p><h2>Practice against the computer</h2></div>
+        <div class="practice-options">
+          <label>Strength
+            <select id="aiDifficulty">
+              <option value="3000" selected>1 Elo</option>
+            </select>
+          </label>
+          <label>Play as
+            <select id="practiceColor"><option value="w" selected>White</option><option value="b">Black</option></select>
+          </label>
+          <label>Time
+            <select id="practiceTime">
+              <option value="1">1 minute</option>
+              <option value="3">3 minutes</option>
+              <option value="10" selected>10 minutes</option>
+              <option value="0">No time limit</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="game-layout">
+        <div class="game-side">
+          <div class="mr-doggy-card">
+            <img class="mr-doggy-avatar" src="assets/mr-doggy.png" alt="Mr. Doggy, a cartoon dog with a hat and mustache">
+            <div class="mr-doggy-info">
+              <div class="mr-doggy-name">Mr. Doggy <span>(1) Elo</span></div>
+              <div class="mr-doggy-subtitle">Super strong chess bot</div>
+            </div>
+            <strong id="aiClock">10:00.0</strong>
+          </div>
+          <div class="practice-advantage" aria-label="Estimated winning chances">
+            <div class="advantage-head"><span id="advantageLabel">Estimated winning chances</span><span id="advantageText">50% White · 50% Black</span></div>
+            <div class="advantage-track"><div id="advantageWhite" class="advantage-white"></div><div id="advantageBlack" class="advantage-black"></div></div>
+            <div class="advantage-caption"><span>White</span><span id="advantageEval">Equal position</span><span>Black</span></div>
+          </div>
+          <div id="practiceBoard" class="board"></div>
+          <div class="player-card"><span>👤 <span id="practicePlayerLabel">You</span> (<span id="practiceColorLabel">White</span>)</span><strong id="practiceClock">10:00.0</strong></div>
+          <div class="controls">
+            <button id="practiceNew">New Game</button>
+            <button class="primary" id="practiceStart">Start Game</button>
+            <button id="practiceUndo">Undo</button>
+            <button class="danger-btn" id="practiceResign">Resign</button>
+          </div>
+        </div>
+        <aside class="side-panel">
+          <h3>Moves</h3>
+          <div id="practiceMoves" class="moves"></div>
+          <div id="practiceStatus" class="status">Your turn.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="local" class="page">
+      <div class="section-head">
+        <div><p class="eyebrow">TWO PLAYERS</p><h2>1v1 Local</h2></div>
+        <div class="local-options">
+          <label>Time
+            <select id="localTime">
+              <option value="1">1 minute</option>
+              <option value="3">3 minutes</option>
+              <option value="10" selected>10 minutes</option>
+              <option value="0">No time limit</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="game-layout">
+        <div class="game-side">
+          <div class="player-card"><span>♟ <span id="blackPlayerLabel">Player 2</span> (Black)</span><strong id="blackClock">10:00</strong></div>
+          <div id="localBoard" class="board"></div>
+          <div class="player-card"><span>♙ <span id="whitePlayerLabel">Player 1</span> (White)</span><strong id="whiteClock">10:00</strong></div>
+          <div class="controls">
+            <button id="localNew2">New Game</button>
+            <button class="primary" id="localStart2">Start Game</button>
+            <button id="localUndo">Undo</button>
+            <button class="danger-btn" id="localResign">Resign</button>
+          </div>
+        </div>
+        <aside class="side-panel">
+          <h3>Moves</h3>
+          <div id="localMoves" class="moves"></div>
+          <div id="localStatus" class="status">White's turn.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="online" class="page">
+      <div class="section-head">
+        <div><p class="eyebrow">MULTIPLAYER</p><h2>1v1 Online</h2></div>
+      </div>
+
+      <div id="onlineLobby" class="online-lobby-grid">
+        <div class="online-card online-panel">
+          <div class="online-panel-icon">↗</div>
+          <h3>Join a Party</h3>
+          <p>Enter the room code your friend shared with you.</p>
+          <input id="roomInput" class="room-code-input" maxlength="40" placeholder="Enter room code" autocomplete="off">
+          <button class="primary full-btn" id="joinRoom">Join Party</button>
+        </div>
+        <div class="online-card online-panel">
+          <div class="online-panel-icon">+</div>
+          <h3>Create a Party</h3>
+          <p>Create a private room and share the generated code with your opponent.</p>
+          <button class="primary full-btn" id="createRoom">Create Party</button>
+          <div id="roomCodeBox" class="room-code-box hidden">
+            <span>Your room code</span><strong id="roomCode">—</strong>
+            <button class="secondary" id="copyRoomCode">Copy Code</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="onlineSetup" class="online-card online-setup hidden">
+        <div class="online-setup-head">
+          <div><p class="eyebrow">ROOM READY</p><h3>Set up your match</h3></div>
+          <span id="onlineConnectionBadge" class="connection-badge">Waiting</span>
+        </div>
+        <div id="roomInfo" class="room-info">Waiting for your opponent…</div>
+        <div class="online-setup-grid">
+          <label>Time control
+            <select id="onlineTime"><option value="60000">1 minute</option><option value="180000">3 minutes</option><option value="600000" selected>10 minutes</option></select>
+          </label>
+          <label>Your color
+            <select id="onlineColor"><option value="random" selected>Random</option><option value="w">White</option><option value="b">Black</option></select>
+          </label>
+        </div>
+        <div class="online-setup-actions">
+          <button class="primary" id="onlineStart" disabled>Start Match</button>
+          <button class="secondary" id="leaveRoom">Leave Room</button>
+        </div>
+        <div id="onlineStatus" class="status">Waiting for both players.</div>
+      </div>
+
+      <div id="onlineMatch" class="online-match hidden">
+        <div class="section-head online-match-head">
+          <div><p class="eyebrow">MATCH</p><h3 id="onlineMatchTitle">1v1 Online</h3></div>
+          <div class="online-match-controls">
+            <button class="secondary" id="onlineDraw">Offer Draw</button>
+            <button class="danger-btn" id="onlineResign">Resign</button>
+          </div>
+        </div>
+        <div class="game-layout">
+          <div class="game-side">
+            <div class="player-card"><span id="onlineBlackName">Black</span><strong id="onlineBlackClock">10:00</strong></div>
+            <div class="practice-advantage online-advantage" aria-label="Winning chances">
+              <div class="advantage-head"><span>Winning chances</span><span id="onlineAdvantageText">50% White · 50% Black</span></div>
+              <div class="advantage-track"><div id="onlineAdvantageWhite" class="advantage-white"></div><div id="onlineAdvantageBlack" class="advantage-black"></div></div>
+              <div class="advantage-caption"><span>White</span><span id="onlineAdvantageEval">Equal position</span><span>Black</span></div>
+            </div>
+            <div id="onlineBoard" class="board online-board"></div>
+            <div class="player-card"><span id="onlineWhiteName">White</span><strong id="onlineWhiteClock">10:00</strong></div>
+          </div>
+          <aside class="side-panel">
+            <h3>Moves</h3>
+            <div id="onlineMoves" class="moves"></div>
+            <div id="onlineMatchStatus" class="status">White to move.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="estadisticas" class="page">
+      <div class="section-head">
+        <div><p class="eyebrow">YOUR PROGRESS</p><h2>Statistics</h2></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><span>Games</span><strong id="statGames">0</strong></div>
+        <div class="stat-card"><span>Wins</span><strong id="statWins">0</strong></div>
+        <div class="stat-card"><span>Losses</span><strong id="statLosses">0</strong></div>
+        <div class="stat-card"><span>Draws</span><strong id="statDraws">0</strong></div>
+        <div class="stat-card"><span>Moves</span><strong id="statMoves">0</strong></div>
+      </div>
+      <div class="history-card">
+        <h3>Game History</h3>
+        <div id="historyList" class="history"></div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <div id="profileModal" class="modal hidden">
+    <div class="modal-box profile-box">
+      <h3>Your Profile</h3>
+      <p class="modal-help">Update the name and email shown on your account.</p>
+      <label class="profile-label">Name</label>
+      <input id="profileNameInput" class="profile-input" maxlength="20" placeholder="Your name" autocomplete="name">
+      <label class="profile-label">Email</label>
+      <input id="profileEmailInput" class="profile-input" type="email" maxlength="120" placeholder="you@example.com" autocomplete="email">
+      <div class="modal-actions">
+        <button class="secondary" id="profileCancel">Cancel</button>
+        <button class="primary" id="profileSave">Save Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="promotionModal" class="modal hidden">
+    <div class="modal-box">
+      <h3>Choose a Piece</h3>
+      <div id="promotionChoices" class="promotion"></div>
+    </div>
+  </div>
+
+  <div id="drawOverlay" class="draw-overlay hidden"><div class="draw-card"><div class="draw-emoji">🤝</div><div class="draw-title">DRAW</div><div>Good game.</div><small>Click anywhere to continue</small></div></div>
+
+  <div id="checkmateOverlay" class="checkmate-overlay hidden"><div id="confettiBox" class="confetti-box"></div><div class="checkmate-card"><div class="checkmate-emoji">♛</div><div class="checkmate-title">CHECKMATE!</div><div id="checkmateWinner">White wins</div><small>Click anywhere to continue</small></div></div>
+  <div id="resignOverlay" class="checkmate-overlay hidden"><div id="resignConfettiBox" class="confetti-box"></div><div class="checkmate-card resign-card"><div class="checkmate-emoji">🏳️</div><div class="checkmate-title resign-title">RESIGNED!</div><div id="resignWinner">White wins</div></div></div>
+  <div id="timeoutOverlay" class="timeout-overlay hidden"><div class="timeout-card"><div class="timeout-title">TIME OUT</div><div id="timeoutMessage">You lost, be faster</div><small>Click anywhere to continue</small></div></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
